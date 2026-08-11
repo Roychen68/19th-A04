@@ -1,0 +1,23 @@
+nav.nav{
+    height: 100%;
+    color: #07244C;
+    text-align: center;
+}
+nav.nav a.link{
+    position: relative;
+    top: 0;
+    left: 0;
+    align-content: center;
+    height: 50px;
+    color: #07244C;
+    text-decoration: none;
+}
+nav.nav a.link::before{
+    background: linear-gradient(#2A9A9D,#2B6AA0,#2B6AA0);
+    position: absolute;
+    height: 50px;
+    width: 0;
+}
+nav.nav a.link:hover ~ a.link::before{
+    width: 100%;
+}
