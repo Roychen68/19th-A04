@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header class="w-100 border-bottom d-flex flex-wrap align-items-center">
         <div class="col-1 col-sm-1 col-lg-2">
@@ -15,14 +17,25 @@
         </div>
         <h1 class="title">Aurora Finland</h1>
     </header>
-    <nav class="nav col-2">
-        <a href="index.html" class="link w-100 active">首頁</a>
-        <a href="forecast.html" class="link w-100">極光預報</a>
-        <a href="journal.html" class="link w-100">旅人日記</a>
-        <a href="admin.html" class="link w-100">系統管理</a>
-    </nav>
-    <main></main>
-    <footer></footer>
+    <div class="d-flex flex-wrap">
+        <nav class="nav col-lg-2 col-6 border-end h-100 left-0">
+            <a href="index.html" class="link w-100 active">首頁</a>
+            <a href="forecast.html" class="link w-100">極光預報</a>
+            <a href="journal.html" class="link w-100">旅人日記</a>
+            <a href="admin.html" class="link w-100">系統管理</a>
+        </nav>
+        <main class="main col-md-8 col-12">
+            <div class="card col-12 col-md-10 col-lg-12"></div>
+        </main>
+        <footer class="col-lg-2 col-md- col-6 border-top mt-3">
+            <p class="text-secondary text-center">比賽指定資訊</p>
+            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽</p>
+            <p class="text-primary text-center">WebXX</p>
+        </footer>
+    </div>
 </body>
+
 </html>
 <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./node_modules/vue/dist/vue.global.js"></script>
+<script src="./node_modules/jquery/dist/jquery.js"></script>
