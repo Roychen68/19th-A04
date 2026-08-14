@@ -7,11 +7,8 @@ body{
 }
 
 nav {
-    height: 100%;
     color: #07244C;
     text-align: center;
-    height: 100%;
-    z-index: -1;
 }
 
 img.logo {
