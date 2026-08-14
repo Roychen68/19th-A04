@@ -1,9 +1,25 @@
-nav.nav{
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+
+nav {
     height: 100%;
     color: #07244C;
     text-align: center;
+    height: 100%;
+    z-index: -1;
 }
-nav.nav a.link{
+
+img.logo {
+    width: 100px;
+    height: auto;
+}
+
+nav a.link {
     z-index: 5;
     position: relative;
     align-content: center;
@@ -11,20 +27,27 @@ nav.nav a.link{
     color: #07244C;
     text-decoration: none;
 }
-nav.nav a.link::before{
+
+nav a.link::before {
     z-index: -1;
     top: 0;
     left: 0;
     transition: .3s;
     content: "";
-    background: linear-gradient(#2A9A9D,#2B6AA0,#2B6AA0);
+    background: linear-gradient(90deg, #2A9A9D, #2B6AA0, #2B6AA0);
     position: absolute;
     height: 50px;
     width: 0;
 }
-nav.nav a.link:hover{
+
+nav a.link:hover {
     color: #fff;
 }
-nav.nav a.link:hover::before{
+
+nav a.link:hover::before {
     width: 100%;
+}
+
+footer {
+    z-index: 5;
 }

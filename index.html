@@ -11,34 +11,38 @@
 </head>
 
 <body>
-    <header class="w-100 border-bottom d-flex flex-wrap align-items-center">
-        <div class="col-1 col-sm-1 col-lg-1">
+    <header class="navbar border-bottom d-flex align-items-center w-100">
+        <div class="d-flex">
             <img src="./logo.png" alt="logo" class="logo img-fluid">
+            <div>
+                <h1 class="title mb-0">Aurora Finland</h1>
+                <p class="slogan mb-0">追尋北境天空下的極光旅程</p>
+            </div>
         </div>
-        <h1 class="title">Aurora Finland</h1>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
     </header>
-    <div class="d-lg-flex flex-wrap w-100">
-        <nav class="nav border-end col-3 navbar-expand-lg navbar-light" id="navbar">
-            <a href="index.html" class="link nav-link w-100 active">首頁</a>
-            <a href="forecast.html" class="link nav-link w-100">極光預報</a>
-            <a href="journal.html" class="link nav-link w-100">旅人日記</a>
-            <a href="admin.html" class="link nav-link w-100">系統管理</a>
+    <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100">
+        <nav class="collapse d-lg-block border-end col-12 col-lg-3 h-100" id="navbar">
+            <div class="nav flex-column w-100">
+                <a href="#index" class="link nav-link w-100 active">首頁</a>
+                <a href="#forecast" class="link nav-link w-100">極光預報</a>
+                <a href="#journal" class="link nav-link w-100">旅人日記</a>
+                <a href="#admin" class="link nav-link w-100">系統管理</a>
+            </div>
         </nav>
-        <main class="main col-9">
+        <main class="main col-12 col-lg-9">
             <div class="card col-12"></div>
         </main>
         <footer class="col-12 col-md-12 border-top fixed-bottom">
             <p class="text-secondary text-center mt-3">比賽指定資訊</p>
-            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽</p>
-            <p class="text-primary text-center">WebXX</p>
+            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
         </footer>
     </div>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./node_modules/vue/dist/vue.global.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
 </body>
 
 </html>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-<script src="./node_modules/vue/dist/vue.global.js"></script>
-<script src="./node_modules/jquery/dist/jquery.js"></script>
