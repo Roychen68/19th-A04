@@ -1,41 +1,32 @@
-const { createApp, ref } = Vue;
+$(function () {
+    $.post("api/login.php")
+    const navigation = {
+        index: "首頁",
+        admin: "系統管理",
+        journal: "旅人日記",
+        forecast: "極光預報"
+    };
 
-createApp({
-    data() {
-        return {
-            navigation: {
-                index: "首頁",
-                admin: "系統管理",
-                journal: "旅人日記",
-                forecast: "極光預報"
-            }
+    function hash() {
+        let breadcrumbs = new Set(["首頁"])
+        let current = location.hash.substring(1)
+        localStorage.setItem("breadcrumbs",breadcrumbs)
+        breadcrumbs.add(navigation[current])
+        console.log(current);
+        if (current == "admin") {
+            $.get("api/admin.php",(res)=>{
+                console.log(res);
+                
+                if (res != false) {
+                    location.href = "login.html"
+                } else {
+                    location.href = "admin.html"
+                }
+            })
+        } else {
+            location.href = current+".html"
         }
-    },
-    methods: {
-        hash() {
-            let breadcrumbs = new Set(["首頁"])
-            let current = location.hash.substring(1)
-            breadcrumbs.add(navigation[current])
-        }
-    },
-    mounted() {
-        $(window).on("hashchange", this.hash)
     }
-}).mount("#app")
 
-// $(function () {
-//     const navigation = {
-//         index: "首頁",
-//         admin: "系統管理",
-//         journal: "旅人日記",
-//         forecast: "極光預報"
-//     };
-
-//     function hash() {
-//         let breadcrumbs = new Set(["首頁"])
-//         let current = location.hash.substring(1)
-//         breadcrumbs.add(navigation[current])
-//     }
-
-//     $(window).on("hashchange", hash)
-// })
+    $(window).on("hashchange", hash)
+})

@@ -46,5 +46,8 @@ nav a.link:hover::before {
 }
 
 footer {
+    height: auto;
+    position: relative;
+    bottom: 0;
     z-index: 5;
 }

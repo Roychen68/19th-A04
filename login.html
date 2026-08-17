@@ -25,7 +25,7 @@
     </header>
     <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100" id="app">
         <nav class="collapse d-lg-block border-end col-12 col-lg-3 col-12" id="navbar">
-            <div class="nav flex-column w-100">
+            <div class="nav flex-column w-100 border-bottom">
                 <span class="navbar-brand w-100">主選單</span>
                 <a href="#index" class="link nav-link w-100 active">首頁</a>
                 <a href="#forecast" class="link nav-link w-100">極光預報</a>
@@ -35,11 +35,22 @@
             </div>
         </nav>
         <main class="main col-12 col-lg-9">
-            <div class="card col-12">
-                <h1>index</h1>
+            <div class="card col-6 m-auto mt-5 p-3 text-center align-items-center">
+                <h2>系統管理</h2>
             </div>
+            <form class="col-9 bd-example card m-auto mt-3 p-3" onsubmit="login()" id="form">
+                <div class="mb-3">
+                    <label for="account" class="form-label">帳號</label>
+                    <input type="text" class="form-control" name="account">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密碼</label>
+                    <input type="text" class="form-control" name="password">
+                </div>
+                <button type="submit" class="btn btn-outline-primary" id="submit">登入</button>
+            </form>
         </main>
-        <footer class="col-12 border-top">
+        <footer class="col-12 border-top mt-3">
             <p class="text-secondary text-center mt-3">比賽指定資訊</p>
             <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
         </footer>
@@ -48,8 +59,21 @@
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./main.js"></script>
     <script>
-        console.log("index")
+        function login() {
+            const form = document.getElementById("form")
+            const formData = new FormData(form)
+            $.post("api/login.php",{form:formData},(res)=>{
+                console.log(res);
+                if (res.login == true) {
+                    location.href = "admin.html"
+                } else {
+                    
+                }
+            })
+        }
+        $(document).submit(function (e) {
+            e.preventDefault()
+        })
     </script>
 </body>
-
 </html>
