@@ -38,10 +38,7 @@
             <div class="card col-10 m-auto mt-3 p-3 text-center">
                 <h1>Forecast</h1>
             </div>
-            <div class="card mt-3 col-10 m-auto mb-3">
-                <div class="map col-3">
-                    <img src="" alt="">
-                </div>
+            <div class="my-3 row-cols-1 row-cols-md-2 col-10 m-auto" id="forecasts">
             </div>
         </main>
         <footer class="col-12 border-top">
@@ -54,9 +51,26 @@
     <script src="./main.js"></script>
     <script>
         async function data() {
-            const raw = await fetch("api/get.php",{method: "post",body: {action: "aurora"}})
-            const response =  await raw.json()
-            console.log(response);
+            $.post("api/get.php", { action: "aurora" }, (res) => {
+                let cards = ""
+                const response = res.data[0].customdata;
+                console.log(response);
+                response.forEach(index => {
+                    $("#forecasts").append(`
+                    <div class="card col mb-1">
+                        <div class="card-body">
+                            <h2 class="card-title">${index[9]}</h2>
+                            <p class="card-text">${index[0]}</p>
+                            <span class="crad-text">北緯：${index[4]}</span>
+                            <span class="crad-text">東經：${index[4]}</span>
+                        </div>
+                    </div>
+                    `)
+                });
+            })
+            // const raw = await fetch("api/get.php",{method: "POST",body: new URLSearchParams({action: "aurora"})})
+            // const response =  await raw
+            // console.log(response);
         }
         data()
     </script>
