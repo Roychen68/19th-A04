@@ -3,7 +3,7 @@ session_start();
 
 $_SESSION['admin'] = $_SESSION['admin'] ?? false;
 $form = $_POST;
-if ($form['password'] == "1234" && $form == "admin") {
+if ($form['password'] == "1234" && $form['account'] == "admin") {
     $_SESSION['admin'] = true;
     echo json_encode([
         "login" => true,
@@ -12,7 +12,7 @@ if ($form['password'] == "1234" && $form == "admin") {
 } else {
     echo json_encode([
         "login" => false,
-        "message" => "登入錯誤"
+        "message" => "未登入者不可直接進入後台"
     ]);
 }
 

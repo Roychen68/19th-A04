@@ -10,17 +10,16 @@ $(function () {
     function hash() {
         let breadcrumbs = new Set(["首頁"])
         let current = location.hash.substring(1)
-        localStorage.setItem("breadcrumbs",breadcrumbs)
+        localStorage.setItem("breadcrumbs",JSON.stringify([...breadcrumbs]))
         breadcrumbs.add(navigation[current])
         console.log(current);
         if (current == "admin") {
             $.get("api/admin.php",(res)=>{
                 console.log(res);
-                
-                if (res != false) {
-                    location.href = "login.html"
-                } else {
+                if (res) {
                     location.href = "admin.html"
+                } else {
+                    location.href = "login.html"
                 }
             })
         } else {

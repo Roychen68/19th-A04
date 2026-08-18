@@ -35,8 +35,13 @@
             </div>
         </nav>
         <main class="main col-12 col-lg-9">
-            <div class="card col-9 m-auto mt-3 p-3">
+            <div class="card col-10 m-auto mt-3 p-3 text-center">
                 <h1>Forecast</h1>
+            </div>
+            <div class="card mt-3 col-10 m-auto mb-3">
+                <div class="map col-3">
+                    <img src="" alt="">
+                </div>
             </div>
         </main>
         <footer class="col-12 border-top">
@@ -48,7 +53,12 @@
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./main.js"></script>
     <script>
-        console.log("index")
+        async function data() {
+            const raw = await fetch("api/get.php",{method: "post",body: {action: "aurora"}})
+            const response =  await raw.json()
+            console.log(response);
+        }
+        data()
     </script>
 </body>
 
