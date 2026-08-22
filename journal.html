@@ -68,11 +68,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="review">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" required>
+                            <input type="email" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="review">心得</label>
-                            <textarea type="text" name="review" id="review" class="form-control" minlength="10" required></textarea>
+                            <textarea type="text" name="review" id="review" class="form-control" minlength="10"
+                                required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">選擇照片</label>
@@ -99,11 +100,14 @@
         const form = $("form#form")[0]
         $(function () {
             function fill() {
-                let formData = new FormData(form)
-                const recent = JSON.parse(localStorage.getItem("journal"));
-                recent.forEach(([key, index]) => {
-                    $(`form#form input[name="${key}"]:not([type='file']) , form#form textarea[name="${key}"]`).val(index)
-                });
+                const recent = JSON.parse(localStorage.getItem("journal"))
+
+                if (!recent) return
+
+                recent.forEach(([key, value]) => {
+                    $(`form#form input[name="${key}"]:not([type='file']),form#form textarea[name="${key}"]`)
+                        .val(value)
+                })
             }
 
             fill()
@@ -112,9 +116,9 @@
                 console.log([...formData])
                 localStorage.setItem("journal", JSON.stringify([...formData]))
             })
-            $("#form").on("submit",function () {
+            $("#form").on("submit", function () {
                 let formData = new FormData(form)
-                formData.append("action","journal")
+                formData.append("action", "journal")
                 fetch("api/manage.php", { method: "POST", body: formData })
                     .then(res => res.text())
                     .then(data => console.log(data))
