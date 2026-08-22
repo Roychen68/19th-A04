@@ -12,28 +12,28 @@
 
 <body>
     <header class="navbar border-bottom d-flex align-items-center w-100">
-        <div class="d-flex">
+        <div class="d-flex gap-3 align-items-center">
             <img src="./logo.png" alt="logo" class="logo img-fluid">
             <div>
                 <h1 class="title mb-0">Aurora Finland</h1>
-                <p class="slogan mb-0">追尋北境天空下的極光旅程</p>
+                <p class="slogan mb-0 d-none d-md-block">
+                    追尋北境天空下的極光旅程
+                </p>
             </div>
         </div>
         <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </header>
-    <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100" id="app">
-        <nav class="collapse d-lg-block border-end col-12 col-lg-3 col-12" id="navbar">
-            <div class="nav flex-column w-100">
-                <span class="navbar-brand w-100">主選單</span>
-                <a href="#index" class="link nav-link w-100 active">首頁</a>
-                <a href="#forecast" class="link nav-link w-100">極光預報</a>
-                <a href="#journal" class="link nav-link w-100">旅人日記</a>
-                <a href="#admin" class="link nav-link w-100">系統管理</a>
-                <span>功能區</span>
+        <nav class="collapse d-lg-block border-end col-12" id="navbar">
+            <div class="nav d-lg-flex w-100">
+                <a href="#index" class="link nav-link col-12 col-md-3 active">首頁</a>
+                <a href="#forecast" class="link nav-link col-12 col-md-3">極光預報</a>
+                <a href="#journal" class="link nav-link col-12 col-md-3">旅人日記</a>
+                <a href="#admin" class="link nav-link col-12 col-md-3">系統管理</a>
             </div>
         </nav>
+    </header>
+    <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100" id="app">
         <main class="main col-12 col-lg-9">
             <div class="card col-6 m-auto mt-5 p-3 text-center align-items-center">
                 <h2>系統管理</h2>
@@ -51,17 +51,17 @@
         async function login() {
             const form = document.getElementById("form")
             const formData = new FormData(form)
-            const response = await fetch("api/login.php",{method: "POST",body:formData})
+            const response = await fetch("api/login.php", { method: "POST", body: formData })
             const res = await response.json()
             console.log(res)
             if (res.login == true) {
-                    alert(res.message)
-                    location.href = "admin.html"
-                } else {
-                    alert(res.message)
-                    $("input[name='account']").addClass("is-invalid")
-                    $("input[name='password']").addClass("is-invalid")
-                }
+                alert(res.message)
+                location.href = "admin.html"
+            } else {
+                alert(res.message)
+                $("input[name='account']").addClass("is-invalid")
+                $("input[name='password']").addClass("is-invalid")
+            }
         }
         $(document).submit(function (e) {
             e.preventDefault()
@@ -69,4 +69,5 @@
         })
     </script>
 </body>
+
 </html>

@@ -1,19 +1,29 @@
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
+}
+
+
+header {
+    background: #062247;
+    color: #fff;
+    align-items: center;
 }
 
 nav {
     color: #07244C;
     text-align: center;
+    align-self: center;
 }
 
 img.logo {
+    margin-left: 25px;
     width: 100px;
     height: auto;
+    border-radius: .5rem;
 }
 
 nav a.link {
@@ -23,6 +33,7 @@ nav a.link {
     height: 50px;
     color: #07244C;
     text-decoration: none;
+    color: #fff;
 }
 
 nav a.link::before {
@@ -46,8 +57,17 @@ nav a.link:hover::before {
 }
 
 footer {
+    background: #fff;
     height: auto;
     position: relative;
     bottom: 0;
     z-index: 5;
+}
+
+span.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+button.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.7);
 }

@@ -10,11 +10,11 @@ $(function () {
     function hash() {
         let breadcrumbs = new Set(["首頁"])
         let current = location.hash.substring(1)
-        localStorage.setItem("breadcrumbs",JSON.stringify([...breadcrumbs]))
+        localStorage.setItem("breadcrumbs", JSON.stringify([...breadcrumbs]))
         breadcrumbs.add(navigation[current])
         console.log(current);
         if (current == "admin") {
-            $.get("api/admin.php",(res)=>{
+            $.get("api/admin.php", (res) => {
                 console.log(res);
                 if (res) {
                     location.href = "admin.html"
@@ -23,9 +23,13 @@ $(function () {
                 }
             })
         } else {
-            location.href = current+".html"
+            location.href = current + ".html"
         }
     }
 
     $(window).on("hashchange", hash)
+})
+
+$(document).submit(function (e) {
+    e.preventDefault()
 })
