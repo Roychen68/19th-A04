@@ -1,6 +1,7 @@
 (function () {
     "use strict";
 
+<<<<<<< HEAD
     const STORAGE_KEY = "auroraFinlandJournals";
     const page = document.body.dataset.page || "";
 
@@ -511,3 +512,31 @@
     initLogin();
     initAdmin();
 }());
+=======
+    function hash() {
+        let breadcrumbs = new Set(["首頁"])
+        let current = location.hash.substring(1)
+        localStorage.setItem("breadcrumbs", JSON.stringify([...breadcrumbs]))
+        breadcrumbs.add(navigation[current])
+        console.log(current);
+        if (current == "admin") {
+            $.get("api/admin.php", (res) => {
+                console.log(res);
+                if (res) {
+                    location.href = "admin.html"
+                } else {
+                    location.href = "login.html"
+                }
+            })
+        } else {
+            location.href = current + ".html"
+        }
+    }
+
+    $(window).on("hashchange", hash)
+})
+
+$(document).submit(function (e) {
+    e.preventDefault()
+})
+>>>>>>> 687d267aedf0500be35da75912d47d6c5f070a04

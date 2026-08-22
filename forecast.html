@@ -5,6 +5,7 @@
     <title>極光預報｜Aurora Finland</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"><link rel="icon" href="logo.png" type="image/png"><link rel="stylesheet" href="style.css">
 </head>
+<<<<<<< HEAD
 <body data-page="forecast">
     <a class="skip-link" href="#main-content">跳到主要內容</a>
     <header class="site-header"><div class="container site-shell d-flex align-items-center justify-content-between gap-3"><a class="brand" href="index.php" aria-label="Aurora Finland 首頁"><img src="logo.png" alt="Aurora Finland 山脈與極光標誌" class="brand-logo"><span class="brand-copy"><strong>Aurora Finland</strong><small>追尋北境天空下的極光旅程</small></span></a><button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="開啟主選單"><span class="navbar-toggler-icon"></span></button></div></header>
@@ -19,5 +20,138 @@
     </div></main>
     <footer class="site-footer"><div class="container site-shell d-md-flex justify-content-between align-items-center gap-3"><p class="mb-2 mb-md-0"><strong>Aurora Finland</strong>　芬蘭極光旅遊資訊平台</p><p class="mb-0">第19屆全國身心障礙者技能競賽　設計者：WebXX</p></div></footer>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="./node_modules/jquery/dist/jquery.min.js"></script><script src="main.js"></script>
+=======
+
+<body>
+    <header class="navbar d-flex align-items-center w-100">
+        <div class="d-flex gap-3 align-items-center">
+            <img src="./logo.png" alt="logo" class="logo img-fluid">
+            <div>
+                <h1 class="title mb-0">Aurora Finland</h1>
+                <p class="slogan mb-0 d-none d-md-block">
+                    追尋北境天空下的極光旅程
+                </p>
+            </div>
+        </div>
+        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="collapse d-lg-block border-end col-12" id="navbar">
+            <div class="nav d-lg-flex w-100">
+                <a href="#index" class="link nav-link col-12 col-md-3 active">首頁</a>
+                <a href="#forecast" class="link nav-link col-12 col-md-3">極光預報</a>
+                <a href="#journal" class="link nav-link col-12 col-md-3">旅人日記</a>
+                <a href="#admin" class="link nav-link col-12 col-md-3">系統管理</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="card col-10 m-auto mt-3 p-3 text-center">
+            <h1>Forecast</h1>
+            <form class="row g-3 align-items-center" id="forecast">
+                <div class="col">
+                    <select class="form-select" id="location">
+                        <option value="" selected disabled>選擇一個地點</option>
+                        <option value="all">全部地點</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-primary">
+                        查詢
+                    </button>
+                </div>
+                <p class="text-secondary">*記得按查詢才會查詢最新輸入匡裡的內容*</p>
+            </form>
+        </div>
+
+        <div class="col-10 m-auto my-3">
+            <div class="row row-cols-1 row-cols-md-2 g-4" id="forecasts"></div>
+        </div>
+    </main>
+    <footer class="col-12 border-top">
+        <p class="text-secondary text-center mt-3">比賽指定資訊</p>
+        <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
+    </footer>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./main.js"></script>
+    <script>
+        function data() {
+            $.post("api/get.php", { action: "aurora" }, (res) => {
+                const customdata = res.data[0].customdata
+                const hovertext = res.data[0].hovertext
+                customdata.forEach((index, i) => {
+                    let color
+                    let prefer
+                    if (index[0] == "High activity") {
+                        color = "success"
+                        prefer = "高"
+                    } else if (index[0] == "Medium activity") {
+                        color = "warning"
+                        prefer = "中"
+                    } else {
+                        color = "danger"
+                        prefer = "低"
+                    }
+                    $("#location").append(`<option value="${hovertext[i]}">${hovertext[i]}</option>`)
+                    $("#forecasts").append(`
+                <div class="col forecast-card text-center"
+                     data-location="${hovertext[i]}">
+
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="card-title">
+                                ${index[9]}
+                            </h2>
+                            <div class="card-text">
+                                ${index[0]}
+                            </div>
+                            <div class="card-text">
+                                Kp值：我的資料沒有 Kp 值 :(
+                            </div>
+                            <div class="mt-auto">
+                                <span>雲量：67%</span>
+                                <span>極光機率：67%</span>
+                            </div>
+                            <div class="mt-auto">
+                                <span>北緯：${index[4]}</span>
+                                <span>東經：${index[5]}</span>
+                            </div>
+                            <div class="card-text">最佳觀賞時間： 我沒有資料:(</div>
+                            <div class="card-text">推薦程度：<span class="rounded text-light bg-${color} p-1">${prefer}</span></div>
+                            <div class="card-text">備註：十分好備註</div>
+                        </div>
+                    </div>
+
+                </div>
+            `)
+                })
+            })
+        }
+
+        data()
+
+        $("#forecast").on("submit", function (e) {
+            e.preventDefault()
+
+            const selected = $("#location").val()
+
+            if (!selected) {
+                alert("請選擇一個地點")
+                return
+            }
+
+            if (selected === "all") {
+                $(".forecast-card").show()
+                $("#forecasts").addClass("row-cols-md-2")
+            } else {
+                $(".forecast-card").hide()
+                $(`.forecast-card[data-location="${selected}"]`).show()
+
+                $("#forecasts").removeClass("row-cols-md-2")
+            }
+        })
+    </script>
+>>>>>>> 687d267aedf0500be35da75912d47d6c5f070a04
 </body>
 </html>
