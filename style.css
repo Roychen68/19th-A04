@@ -1,11 +1,18 @@
-html {
-    height: 100%;
-}
-
 body {
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+main {
+    flex: 1;
+}
+
+footer {
+    background: #fff;
+    height: auto;
+    z-index: 5;
+}
 
 header {
     background: #062247;
@@ -56,13 +63,6 @@ nav a.link:hover::before {
     width: 100%;
 }
 
-footer {
-    background: #fff;
-    height: auto;
-    position: relative;
-    bottom: 0;
-    z-index: 5;
-}
 
 span.navbar-toggler-icon {
     filter: brightness(0) invert(1);

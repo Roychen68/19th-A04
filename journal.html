@@ -34,17 +34,17 @@
         </nav>
     </header>
     <main class="main">
-        <div class="card col-10 m-auto mt-3 p-3 d-flex align-items-center">
+        <div class="card col-10 m-auto mt-3 p-3 align-items-center mb-3›">
             <h1>Journal</h1>
             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal">建立投稿</button>
         </div>
         <div class="modal fade" id="modal">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <form class="modal-content" id="form">
                     <div class="modal-header">
                         <h2></h2>
                     </div>
-                    <form class="modal-body" id="form">
+                    <div class="modal-body">
                         <div class="row g-3 mb-3">
                             <div class="col-md-6 col-12">
                                 <label for="name">旅人匿名</label>
@@ -71,16 +71,16 @@
                             <textarea type="text" name="review" id="review" class="form-control"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Default file input example</label>
+                            <label for="formFile" class="form-label">選擇照片</label>
                             <input class="form-control" type="file" id="formFile">
                         </div>
-                    </form>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-outline-primary">送出</button>
                         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
                             data-bs-target="modal">取消</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </main>
@@ -108,15 +108,15 @@
                 console.log([...formData])
                 localStorage.setItem("journal", JSON.stringify([...formData]))
             })
-            function login() {
+            $("#form").on("submit",() => {
                 let formData = new FormData(form)
-                fetch("api/manage.php", { method: "POST", body: formData })
+                fetch("api/manage.php", { method: "POST", body: {action: "journal",form:formData} })
                     .then(res => (res) => {
                         console.log(res);
 
                         alert("表單已送出")
                     })
-            }
+            })
         })
     </script>
 </body>
