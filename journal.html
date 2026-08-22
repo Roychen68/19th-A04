@@ -1,55 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Finland</title>
-    <link rel="stylesheet" href="./node_modules//bootstrap/dist/css/bootstrap.css">
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="投稿與瀏覽芬蘭極光旅人日記。">
+    <title>旅人日記｜Aurora Finland</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"><link rel="icon" href="logo.png" type="image/png"><link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-    <header class="navbar border-bottom d-flex align-items-center w-100">
-        <div class="d-flex">
-            <img src="./logo.png" alt="logo" class="logo img-fluid">
-            <div>
-                <h1 class="title mb-0">Aurora Finland</h1>
-                <p class="slogan mb-0">追尋北境天空下的極光旅程</p>
-            </div>
+<body data-page="journal">
+    <a class="skip-link" href="#main-content">跳到主要內容</a>
+    <header class="site-header"><div class="container site-shell d-flex align-items-center justify-content-between gap-3"><a class="brand" href="index.php" aria-label="Aurora Finland 首頁"><img src="logo.png" alt="Aurora Finland 山脈與極光標誌" class="brand-logo"><span class="brand-copy"><strong>Aurora Finland</strong><small>追尋北境天空下的極光旅程</small></span></a><button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="開啟主選單"><span class="navbar-toggler-icon"></span></button></div></header>
+    <nav class="site-nav navbar navbar-expand-lg" aria-label="主選單"><div class="container site-shell"><div class="collapse navbar-collapse" id="site-navigation"><ul class="navbar-nav w-100"><li class="nav-item"><a class="nav-link" data-nav="home" href="index.php">首頁</a></li><li class="nav-item"><a class="nav-link" data-nav="forecast" href="forecast.html">極光預報</a></li><li class="nav-item"><a class="nav-link" data-nav="journal" href="journal.html">旅人日記</a></li><li class="nav-item ms-lg-auto"><a class="nav-link" data-nav="admin" href="login.html">系統管理</a></li></ul></div></div></nav>
+    <main id="main-content"><div class="container site-shell py-4 py-lg-5">
+        <nav aria-label="麵包屑導覽" class="breadcrumb-wrap"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.php">首頁</a></li><li class="breadcrumb-item active" aria-current="page">旅人日記</li></ol></nav>
+        <header class="page-heading"><p class="eyebrow">Traveler journal</p><h1>極光旅人日記</h1><p>分享你與北境夜空相遇的時刻，也為其他旅人的故事送上極光祝福。</p></header>
+        <div class="row g-4 g-xl-5 align-items-start">
+            <div class="col-lg-5"><section id="journal-form" class="form-panel sticky-lg-top" aria-labelledby="journal-form-title"><p class="panel-kicker">SHARE YOUR NIGHT</p><h2 id="journal-form-title">投稿追光日記</h2><p class="required-note"><span aria-hidden="true">＊</span> 所有欄位皆為必填</p><div id="journal-success" class="alert alert-success d-none" role="status" aria-live="polite"></div>
+                <form id="diary-form" novalidate>
+                    <div class="mb-3"><label for="nickname" class="form-label">旅人暱稱</label><input id="nickname" name="nickname" class="form-control" type="text" autocomplete="nickname" required><div class="invalid-feedback" id="nickname-error"></div></div>
+                    <div class="mb-3"><label for="email" class="form-label">Email</label><input id="email" name="email" class="form-control" type="email" autocomplete="email" required><div class="form-text">前台會自動遮蔽 Email，保護投稿隱私。</div><div class="invalid-feedback" id="email-error"></div></div>
+                    <div class="row g-3"><div class="col-sm-6"><label for="location" class="form-label">觀賞地點</label><select id="location" name="location" class="form-select" required><option value="">請選擇</option><option>羅瓦涅米</option><option>伊納里</option><option>基蒂萊</option><option>庫薩莫</option></select><div class="invalid-feedback" id="location-error"></div></div><div class="col-sm-6"><label for="date" class="form-label">觀賞日期</label><input id="date" name="date" class="form-control" type="date" required><div class="invalid-feedback" id="date-error"></div></div></div>
+                    <div class="my-3"><label for="rating" class="form-label">極光評分</label><select id="rating" name="rating" class="form-select" required><option value="">請評分</option><option value="5">★★★★★ 5 分</option><option value="4">★★★★☆ 4 分</option><option value="3">★★★☆☆ 3 分</option><option value="2">★★☆☆☆ 2 分</option><option value="1">★☆☆☆☆ 1 分</option></select><div class="invalid-feedback" id="rating-error"></div></div>
+                    <div class="mb-3"><label for="experience" class="form-label">觀賞心得</label><textarea id="experience" name="experience" class="form-control" rows="5" minlength="10" required aria-describedby="experience-help"></textarea><div id="experience-help" class="form-text">請輸入至少 10 個字。</div><div class="invalid-feedback" id="experience-error"></div></div>
+                    <div class="mb-4"><label for="photo" class="form-label">照片網址或檔名</label><input id="photo" name="photo" class="form-control" type="text" placeholder="例如 aurora-night.jpg" required><div class="invalid-feedback" id="photo-error"></div></div>
+                    <button type="submit" class="btn btn-aurora w-100">發布旅人日記</button>
+                </form></section></div>
+            <div class="col-lg-7"><section id="journal-list" aria-labelledby="journal-list-title"><div class="journal-list-heading"><div><p class="panel-kicker">TRAVELER STORIES</p><h2 id="journal-list-title">最新追光故事</h2></div><span id="journal-count" class="count-pill">0 篇日記</span></div><div id="diary-list" class="diary-list" aria-live="polite"></div></section></div>
         </div>
-        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </header>
-    <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100" id="app">
-        <nav class="collapse d-lg-block border-end col-12 col-lg-3 col-12" id="navbar">
-            <div class="nav flex-column w-100">
-                <span class="navbar-brand w-100">主選單</span>
-                <a href="#index" class="link nav-link w-100 active">首頁</a>
-                <a href="#forecast" class="link nav-link w-100">極光預報</a>
-                <a href="#journal" class="link nav-link w-100">旅人日記</a>
-                <a href="#admin" class="link nav-link w-100">系統管理</a>
-                <span>功能區</span>
-            </div>
-        </nav>
-        <main class="main col-12 col-lg-9">
-            <div class="card col-9 m-auto mt-3 p-3">
-                <h1>Journal</h1>
-            </div>
-        </main>
-        <footer class="col-12 border-top">
-            <p class="text-secondary text-center mt-3">比賽指定資訊</p>
-            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
-        </footer>
-    </div>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
-    <script src="./main.js"></script>
-    <script>
-        console.log("index")
-    </script>
+    </div></main>
+    <footer class="site-footer"><div class="container site-shell d-md-flex justify-content-between align-items-center gap-3"><p class="mb-2 mb-md-0"><strong>Aurora Finland</strong>　芬蘭極光旅遊資訊平台</p><p class="mb-0">第19屆全國身心障礙者技能競賽　設計者：WebXX</p></div></footer>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="./node_modules/jquery/dist/jquery.min.js"></script><script src="main.js"></script>
 </body>
-
 </html>

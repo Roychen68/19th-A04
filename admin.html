@@ -1,72 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Finland</title>
-    <link rel="stylesheet" href="./node_modules//bootstrap/dist/css/bootstrap.css">
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="管理 Aurora Finland 旅人日記。"><title>日記管理後台｜Aurora Finland</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"><link rel="icon" href="logo.png" type="image/png"><link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-    <header class="navbar border-bottom d-flex align-items-center w-100">
-        <div class="d-flex">
-            <img src="./logo.png" alt="logo" class="logo img-fluid">
-            <div>
-                <h1 class="title mb-0">Aurora Finland</h1>
-                <p class="slogan mb-0">追尋北境天空下的極光旅程</p>
-            </div>
-        </div>
-        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </header>
-    <div class="d-lg-flex flex-wrap flex-grow-1 w-100 h-100" id="app">
-        <nav class="collapse d-lg-block border-end col-12 col-lg-3 col-12" id="navbar">
-            <div class="nav flex-column w-100">
-                <span class="navbar-brand w-100">主選單</span>
-                <a href="#index" class="link nav-link w-100 active">首頁</a>
-                <a href="#forecast" class="link nav-link w-100">極光預報</a>
-                <a href="#journal" class="link nav-link w-100">旅人日記</a>
-                <a href="#admin" class="link nav-link w-100">系統管理</a>
-                <span>功能區</span>
-            </div>
-        </nav>
-        <main class="main col-12 col-lg-9">
-            <div class="card col-6 m-auto mt-5 p-3 text-center align-items-center">
-                <h2>系統管理</h2>
-            </div>
-        </main>
-        <footer class="col-12 border-top mt-3">
-            <p class="text-secondary text-center mt-3">比賽指定資訊</p>
-            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
-        </footer>
-    </div>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
-    <script src="./main.js"></script>
-    <script>
-        async function login() {
-            const form = document.getElementById("form")
-            const formData = new FormData(form)
-            const response = await fetch("api/login.php",{method: "POST",body:formData})
-            const res = await response.json()
-            console.log(res)
-            if (res.login == true) {
-                    alert(res.message)
-                    location.href = "admin.html"
-                } else {
-                    alert(res.message)
-                    $("input[name='account']").addClass("is-invalid")
-                    $("input[name='password']").addClass("is-invalid")
-                }
-        }
-        $(document).submit(function (e) {
-            e.preventDefault()
-            login()
-        })
-    </script>
+<body data-page="admin-panel">
+    <a class="skip-link" href="#main-content">跳到主要內容</a>
+    <header class="site-header"><div class="container site-shell d-flex align-items-center justify-content-between gap-3"><a class="brand" href="index.php" aria-label="Aurora Finland 首頁"><img src="logo.png" alt="Aurora Finland 山脈與極光標誌" class="brand-logo"><span class="brand-copy"><strong>Aurora Finland</strong><small>追尋北境天空下的極光旅程</small></span></a><button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="開啟主選單"><span class="navbar-toggler-icon"></span></button></div></header>
+    <nav class="site-nav navbar navbar-expand-lg" aria-label="主選單"><div class="container site-shell"><div class="collapse navbar-collapse" id="site-navigation"><ul class="navbar-nav w-100"><li class="nav-item"><a class="nav-link" data-nav="home" href="index.php">首頁</a></li><li class="nav-item"><a class="nav-link" data-nav="forecast" href="forecast.html">極光預報</a></li><li class="nav-item"><a class="nav-link" data-nav="journal" href="journal.html">旅人日記</a></li><li class="nav-item ms-lg-auto"><a class="nav-link" data-nav="admin" href="admin.html">系統管理</a></li></ul></div></div></nav>
+    <main id="main-content"><div class="container site-shell py-4 py-lg-5"><nav aria-label="麵包屑導覽" class="breadcrumb-wrap"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.php">首頁</a></li><li class="breadcrumb-item"><a href="login.html">系統管理</a></li><li class="breadcrumb-item active" aria-current="page">日記管理</li></ol></nav>
+        <header class="admin-heading"><div><p class="eyebrow">Journal management</p><h1>旅人日記管理</h1><p>查看完整投稿資料，並依關鍵字、地點、日期、評分或祝福數量整理內容。</p></div><button id="logout-button" type="button" class="btn btn-ghost">登出系統</button></header>
+        <div id="admin-loading" class="status-message info" role="status">正在確認登入狀態…</div>
+        <section id="admin-content" class="d-none" aria-labelledby="admin-tools-title"><div class="admin-tools"><div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3"><div><p class="panel-kicker mb-1">FILTER &amp; SORT</p><h2 id="admin-tools-title" class="mb-0">搜尋與整理</h2></div><span id="admin-count" class="count-pill">0 筆資料</span></div><div class="row g-3"><div class="col-lg-5"><label for="admin-search" class="form-label">關鍵字搜尋</label><input id="admin-search" class="form-control" type="search" placeholder="搜尋暱稱或心得"></div><div class="col-sm-6 col-lg-3"><label for="admin-location" class="form-label">地點篩選</label><select id="admin-location" class="form-select"><option value="">全部地點</option><option>羅瓦涅米</option><option>伊納里</option><option>基蒂萊</option><option>庫薩莫</option></select></div><div class="col-sm-6 col-lg-4"><label for="admin-sort" class="form-label">資料排序</label><select id="admin-sort" class="form-select"><option value="date-desc">日期：新到舊</option><option value="date-asc">日期：舊到新</option><option value="rating-desc">評分：高到低</option><option value="blessings-desc">祝福：多到少</option></select></div></div><div id="email-filter" class="email-filter d-none" role="status"><span>目前只顯示 <strong id="email-filter-value"></strong> 的投稿</span><button id="clear-email-filter" type="button" class="btn btn-sm btn-ghost">清除 Email 篩選</button></div></div>
+            <div class="admin-table-wrap table-responsive"><table class="table align-middle mb-0"><caption class="visually-hidden">旅人日記完整投稿資料</caption><thead><tr><th scope="col">旅人 / Email</th><th scope="col">觀賞資訊</th><th scope="col">心得 / 照片</th><th scope="col">互動</th></tr></thead><tbody id="admin-table-body"></tbody></table></div><p id="admin-empty" class="empty-state d-none">沒有符合目前條件的日記資料。</p>
+        </section>
+    </div></main>
+    <footer class="site-footer"><div class="container site-shell d-md-flex justify-content-between align-items-center gap-3"><p class="mb-2 mb-md-0"><strong>Aurora Finland</strong>　芬蘭極光旅遊資訊平台</p><p class="mb-0">第19屆全國身心障礙者技能競賽　設計者：WebXX</p></div></footer>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="./node_modules/jquery/dist/jquery.min.js"></script><script src="main.js"></script>
 </body>
 </html>
