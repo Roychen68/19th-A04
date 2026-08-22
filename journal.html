@@ -63,16 +63,20 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="date">觀賞日期</label>
-                                <input type="date" class="form-control" name="date" id="date" required max="">
+                                <input type="date" class="form-control" name="date" id="date" required>
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label for="review">Email</label>
+                                <input type="email" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="review">心得</label>
-                            <textarea type="text" name="review" id="review" class="form-control"></textarea>
+                            <textarea type="text" name="review" id="review" class="form-control" minlength="10" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">選擇照片</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" type="file" id="formFile" name="image" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -98,7 +102,7 @@
                 let formData = new FormData(form)
                 const recent = JSON.parse(localStorage.getItem("journal"));
                 recent.forEach(([key, index]) => {
-                    $(`form#form input[name="${key}"] , form#form textarea[name="${key}"]`).val(index)
+                    $(`form#form input[name="${key}"]:not([type='file']) , form#form textarea[name="${key}"]`).val(index)
                 });
             }
 
@@ -108,14 +112,12 @@
                 console.log([...formData])
                 localStorage.setItem("journal", JSON.stringify([...formData]))
             })
-            $("#form").on("submit",() => {
+            $("#form").on("submit",function () {
                 let formData = new FormData(form)
-                fetch("api/manage.php", { method: "POST", body: {action: "journal",form:formData} })
-                    .then(res => (res) => {
-                        console.log(res);
-
-                        alert("表單已送出")
-                    })
+                formData.append("action","journal")
+                fetch("api/manage.php", { method: "POST", body: formData })
+                    .then(res => res.text())
+                    .then(data => console.log(data))
             })
         })
     </script>
