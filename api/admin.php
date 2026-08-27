@@ -1,5 +1,8 @@
 <?php
 session_start();
+header("Content-Type: application/json");
 
-echo $_SESSION['admin'];
+echo json_encode([
+    "login" => $_SESSION['admin'] ?? false
+]);
 ?>

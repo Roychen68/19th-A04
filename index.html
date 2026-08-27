@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body data-bs-theme="light">
     <header class="navbar border-bottom d-flex align-items-center w-100">
         <div class="d-flex gap-3 align-items-center">
-            <img src="./logo.png" alt="logo" class="logo img-fluid">
+            <img src="./logo.png" alt="Aurora Finland Logo" class="logo img-fluid">
             <div>
                 <h1 class="title mb-0">Aurora Finland</h1>
                 <p class="slogan mb-0 d-none d-md-block">
@@ -21,37 +21,68 @@
                 </p>
             </div>
         </div>
-        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar">
+        <div class="dropdown" id="theme">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                選擇主題
+            </button>
+            <ul class="dropdown-menu">
+                <a href="#" class="dropdown-item">深色主題</a>
+                <a href="#" class="dropdown-item">淺色主題</a>
+            </ul>
+        </div>
+        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar"
+            aria-label="切換導覽選單">
             <span class="navbar-toggler-icon"></span>
         </button>
         <nav class="collapse d-lg-block border-end col-12" id="navbar">
-            <div class="nav d-lg-flex w-100">
-                <a href="#index" class="link nav-link col-12 col-md-3 active">首頁</a>
-                <a href="#forecast" class="link nav-link col-12 col-md-3">極光預報</a>
-                <a href="#journal" class="link nav-link col-12 col-md-3">旅人日記</a>
-                <a href="#admin" class="link nav-link col-12 col-md-3">系統管理</a>
+            <div class="nav d-lg-flex w-100 row-cols-md-4 row-cols-1">
+                <a href="#index" class="link nav-link active">首頁</a>
+                <a href="#forecast" class="link nav-link">極光預報</a>
+                <a href="#journal" class="link nav-link">旅人日記</a>
+                <a href="#admin" class="link nav-link">系統管理</a>
             </div>
         </nav>
     </header>
     <div class="w-100 h-100">
         <main class="main">
             <div class="card col-10 m-auto mt-3 p-3 text-center">
-                <h1>首頁</h1>
+                <h1>歡迎來到 Aurora Finland</h1>
+                <p class="mb-0">查詢芬蘭極光預報，分享屬於你的北境旅程。</p>
             </div>
-            <div class="my-3 row-cols-1 row-cols-md-2 col-10 m-auto row" id="forecasts">
-            </div>
+            <section class="my-3 col-10 m-auto" aria-label="網站主要功能">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <article class="col">
+                        <div class="card h-100 text-center p-3">
+                            <h2 class="h4">極光預報</h2>
+                            <p>選擇芬蘭地點，查看 Kp 指數、雲量與推薦程度。</p>
+                            <a href="#forecast" class="btn btn-outline-primary mt-auto">前往查詢</a>
+                        </div>
+                    </article>
+                    <article class="col">
+                        <div class="card h-100 text-center p-3">
+                            <h2 class="h4">旅人日記</h2>
+                            <p>投稿觀賞心得，瀏覽其他旅人的極光回憶。</p>
+                            <a href="#journal" class="btn btn-outline-primary mt-auto">閱讀日記</a>
+                        </div>
+                    </article>
+                    <article class="col">
+                        <div class="card h-100 text-center p-3">
+                            <h2 class="h4">系統管理</h2>
+                            <p>管理者可搜尋、篩選並排序所有日記資料。</p>
+                            <p class="text-danger">需要管理員權限</p>
+                            <a href="#admin" class="btn btn-outline-primary mt-auto">進入後台</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
         </main>
-        <footer class="col-12 border-top">
-            <p class="text-secondary text-center mt-3">比賽指定資訊</p>
-            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 WebXX</p>
+        <footer class="col-12 border-top p-3">
+            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 設計者：WebXX</p>
         </footer>
     </div>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./main.js"></script>
-    <script>
-        console.log("index")
-    </script>
 </body>
 
 </html>
