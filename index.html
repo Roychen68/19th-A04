@@ -1,88 +1,73 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora Finland</title>
-    <link rel="stylesheet" href="./node_modules//bootstrap/dist/css/bootstrap.css">
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-bs-theme="light">
-    <header class="navbar border-bottom d-flex align-items-center w-100">
-        <div class="d-flex gap-3 align-items-center">
-            <img src="./logo.png" alt="Aurora Finland Logo" class="logo img-fluid">
-            <div>
-                <h1 class="title mb-0">Aurora Finland</h1>
-                <p class="slogan mb-0 d-none d-md-block">
-                    追尋北境天空下的極光旅程
-                </p>
+<body>
+    <header>
+        <div class="navbar navbar-expand-lg align-items-center">
+            <img src="./logo.png" alt="" class="logo m-2">
+            <div class="titles d-lg-flex align-items-center gap-3">
+                <h1 class="align-items-center">Aurora Finland</h1>
+                <span class="slogan d-none d-md-block">Aurora the beauty of Northern Light</span>
             </div>
-        </div>
-        <div class="dropdown" id="theme">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                選擇主題
+            <button type="button" class="navbar-toggler d-lg-none d-block" data-bs-toggle="collapse"
+                data-bs-target="#navbar" aria-expanded="true">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <ul class="dropdown-menu">
-                <a href="#" class="dropdown-item">深色主題</a>
-                <a href="#" class="dropdown-item">淺色主題</a>
-            </ul>
         </div>
-        <button type="button" class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbar"
-            aria-label="切換導覽選單">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <nav class="collapse d-lg-block border-end col-12" id="navbar">
-            <div class="nav d-lg-flex w-100 row-cols-md-4 row-cols-1">
-                <a href="#index" class="link nav-link active">首頁</a>
-                <a href="#forecast" class="link nav-link">極光預報</a>
-                <a href="#journal" class="link nav-link">旅人日記</a>
-                <a href="#admin" class="link nav-link">系統管理</a>
-            </div>
+        <nav class="navbar navbar-expand-lg ms-auto m-3 w-100">
+            <section class="collapse w-100 row show" id="navbar">
+                <a href="#index" class="link col-md-3 col-12">首頁</a>
+                <a href="#forecast" class="link col-md-3 col-12">極光預報</a>
+                <a href="#journal" class="link col-md-3 col-12">旅人日記</a>
+                <a href="#admin" class="link col-md-3 col-12">系統管理</a>
+            </section>
         </nav>
     </header>
-    <div class="w-100 h-100">
-        <main class="main">
-            <div class="card col-10 m-auto mt-3 p-3 text-center">
-                <h1>歡迎來到 Aurora Finland</h1>
-                <p class="mb-0">查詢芬蘭極光預報，分享屬於你的北境旅程。</p>
+    <main>
+        <div class="breadcrumbs mt-3 mx-auto col-10">test</div>
+        <article class="card col-10 mt-3 m-auto">
+            <div class="card-body text-center">
+                <h2>Aurora Finland</h2>
+                <p class="card-text">Aurora the beauty of Northern Light</p>
             </div>
-            <section class="my-3 col-10 m-auto" aria-label="網站主要功能">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <article class="col">
-                        <div class="card h-100 text-center p-3">
-                            <h2 class="h4">極光預報</h2>
-                            <p>選擇芬蘭地點，查看 Kp 指數、雲量與推薦程度。</p>
-                            <a href="#forecast" class="btn btn-outline-primary mt-auto">前往查詢</a>
-                        </div>
-                    </article>
-                    <article class="col">
-                        <div class="card h-100 text-center p-3">
-                            <h2 class="h4">旅人日記</h2>
-                            <p>投稿觀賞心得，瀏覽其他旅人的極光回憶。</p>
-                            <a href="#journal" class="btn btn-outline-primary mt-auto">閱讀日記</a>
-                        </div>
-                    </article>
-                    <article class="col">
-                        <div class="card h-100 text-center p-3">
-                            <h2 class="h4">系統管理</h2>
-                            <p>管理者可搜尋、篩選並排序所有日記資料。</p>
-                            <p class="text-danger">需要管理員權限</p>
-                            <a href="#admin" class="btn btn-outline-primary mt-auto">進入後台</a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </main>
-        <footer class="col-12 border-top p-3">
-            <p class="text-secondary text-center">第19屆全國身心障礙者技能競賽 設計者：WebXX</p>
-        </footer>
-    </div>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
-    <script src="./main.js"></script>
+        </article>
+        <div class="col-10 mt-3 mx-auto text-center">
+            <div class="row row-cols-md-3 row-cols-1 g-3">
+                <article class="col">
+                    <div class="card card-body p-3">
+                        <h3 class="card-title mb-3">極光預報</h3>
+                        <a href="#forecast" class="btn btn-outline-primary">前往網站</a>
+                    </div>
+                </article>
+                <article class="col">
+                    <div class="card card-body p-3">
+                        <h3 class="card-title mb-3">旅人日記</h3>
+                        <a href="#journal" class="btn btn-outline-primary">前往網站</a>
+                    </div>
+                </article>
+                <article class="col">
+                    <div class="card card-body p-3">
+                        <h3 class="card-title mb-3">系統管理</h3>
+                        <a href="#admin" class="btn btn-outline-primary">前往網站</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-secondary text-light text-center">
+        <p>第19屆全國身心障礙者技能競賽 設計者：WEBXX</p>
+    </footer>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
