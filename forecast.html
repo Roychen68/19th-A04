@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Finland</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg d-block">
+            <div class="p-2 d-flex align-items-center">
+                <img src="./logo.png" alt="Aurora Finland logo" class="logo">
+                <div class="titles px-2 d-lg-flex align-items-center g-2">
+                    <h1>Aurora Finland</h1>
+                    <span class="d-md-block d-none">追尋北境天空下的極光旅程</span>
+                </div>
+                <button class="navbar-toggler" data-bs-target="#nav" data-bs-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-nav navbar-collpase row show" id="nav">
+                <a href="index.html" class="link col-12 col-lg-3">首頁</a>
+                <a href="forecast.html" class="link col-12 col-lg-3 active">極光預報</a>
+                <a href="journal.html" class="link col-12 col-lg-3">旅人日記</a>
+                <a href="login.html" class="link col-12 col-lg-3">系統管理</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article id="breadcrumbs" class="mt-3 col-10 mx-auto"><span class="text-seconary">首頁</span></article>
+        <section class="col-10 mx-auto mt-3 p-1">
+            <div class="card">
+                <form class="card-body text-center row" id="form">
+                    <div class="col-12 col-md mb-3">
+                        <label for="mode">呈現方式:</label>
+                        <select name="mode" id="mode" class="form-control">
+                            <option value="card">卡片</option>
+                            <option value="table">表格</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md mb-3">
+                        <label for="sort">排序:</label>
+                        <select name="sort" id="sort" class="form-control">
+                            <option value="21">kp值(升冪)</option>
+                            <option value="22">kp值(降冪)</option>
+                            <option value="41">雲量(升冪)</option>
+                            <option value="42">雲量(降冪)</option>
+                            <option value="51">極光機率(升冪)</option>
+                            <option value="52">極光機率(降冪)</option>
+                            <option value="61">最佳觀賞時間(升冪)</option>
+                            <option value="62">最佳觀賞時間(降冪)</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md mb-3">
+                        <label for="location">地點:</label>
+                        <select name="location" id="location" class="form-control"></select>
+                    </div>
+                    <div class="col-12 col-md mb-3">
+                        <label for="month">月份:</label>
+                        <input type="month" name="month" id="month" class="form-control">
+                    </div>
+                    <div class="col-12 col-mb mb-3">
+                        <button class="btn btn-outline-primary">送出</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="col-10 mx-auto my-3 p-1 g-0" id="result">
+        </section>
+    </main>
+    <footer class="text-center bg-secondary text-light p-3">
+        <p>第19屆全國身心障礙者技能競賽　設計者：Web67</p>
+    </footer>
+</body>
+
+</html>
+<script src="jqueryv4.0.0.js"></script>
+<script src="bootstrap.js"></script>
+<script src="main.js"></script>
+<script>
+    let response = {}
+    let COLS = [
+        [`name`, '地點名稱', ''],
+        [`kp_index`, 'Kp 地磁活動指數', ''],
+        [`cloud_cover`, '雲量百分比', '%'],
+        [`aurora_probability`, '極光出現機率', '%'],
+        [`best_time`, '最佳觀賞時段', ''],
+        [`recommendation`, '推薦程度', ''],
+        [`temperature`, '氣溫', '℃'],
+        [`note`, '補充說明', ''],
+        [`updated_at`, '資料更新時間', ''],
+    ]
+    function render() {
+        $.post("api.php", { action: "journal_get" }, function (res) {
+            response = JSON.parse(res)
+            let locations = ""
+            JSON.parse(res).forEach((key, i) => {
+                locations += `<option value="${key["name_en"]}">${key['name']}</option>`
+            });
+            locations += `<option value="all">所有地點</option>`
+            $("#location").html(locations)
+        })
+    }
+    render()
+    function table() {
+        console.log("rendered");
+        let html = "";
+        html += `<table class="table">`
+        html += `<tr>${COLS.map(([key, lable, suffix]) => {
+                return `<th>${lable}</th>`
+            }).join("")}
+            </tr>`
+        response.forEach((row, i) => {
+            html += `<tr>${COLS.map(([key, lable, suffix]) => {
+                const val = row[key]
+                if (val == null) return `<td>${lable+exist(val)}</td>`;
+                if (key == "recommendation") return `<td>${lable+level(val)}</td>`;
+                if (key == "note") return `<td>${lable+cut(val)}</td>`;
+                else return `<td>${lable+val+suffix}</td>`
+            }).join("")}
+            </tr>`
+        });
+        html += `</table>`
+        console.log(html);
+        return html
+    }
+    function card() {
+        console.log("rendered");
+        let html = "";
+        html += `<div class="row g-0">`
+        response.forEach((row, i) => {
+            html += `<div class="col-12 col-md-6 p-1"><div class="card card-body">${COLS.map(([key, lable, suffix]) => {
+                const val = row[key]
+                if (val == null) return `<p>${lable}: ${exist(val)}</p>`;
+                if (key == "recommendation") return `<p>${lable}: ${level(val)}</p>`;
+                if (key == "note") return `<p>${lable}: ${cut(val)}</p>`;
+                else return `<p>${lable}: ${val+suffix}</p>`
+            }).join("")}
+            </div></div>`
+        });
+        html += `</div>`
+        console.log(html);
+        return html
+    }
+    $("#form").on("submit", function (e) {
+        e.preventDefault()
+        render()
+        const sorting = $("#sort").val()
+        if (sorting % 10 == 1) response = response.sort((a, b) => a[sorting[0]] - b[sorting[0]])
+        if (sorting % 10 == 2) response = response.sort((a, b) => a[sorting[0]] - b[sorting[0]])
+        if ($("#mode").val() == "card") $("#result").html(card())
+        if ($("#mode").val() == "table") $("#result").html(table())
+        if ($("#location").val() != "all") response = response.filter((location) => location['name_en'] == $("#location").val())
+        console.log($("#location").val());
+    })
+</script>

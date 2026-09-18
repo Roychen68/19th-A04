@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Finland</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg d-block">
+            <div class="p-2 d-flex align-items-center">
+                <img src="./logo.png" alt="Aurora Finland logo" class="logo">
+                <div class="titles px-2 d-lg-flex align-items-center g-2">
+                    <h1>Aurora Finland</h1>
+                    <span class="d-md-block d-none">追尋北境天空下的極光旅程</span>
+                </div>
+                <button class="navbar-toggler" data-bs-target="#nav" data-bs-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-nav navbar-collpase row show" id="nav">
+                <a href="index.html" class="link col-12 col-lg-3 active">首頁</a>
+                <a href="forecast.html" class="link col-12 col-lg-3">極光預報</a>
+                <a href="journal.html" class="link col-12 col-lg-3">旅人日記</a>
+                <a href="login.html" class="link col-12 col-lg-3">系統管理</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article id="breadcrumbs" class="mt-3 col-10 mx-auto"><span class="text-seconary">首頁</span></article>
+        <section class="col-10 mx-auto mt-3 p-1">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2>Aurora Finland</h2>
+                    <p class="card-text">在北緯 66 度，遇見會呼吸的天空</p>
+                </div>
+            </div>
+        </section>
+        <section class="col-10 mx-auto mt-3 row row-cols-md-3 row-col-1">
+            <article class="p-1 col">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2>今晚，哪裡看得到極光？</h2>
+                        <p class="card-text">即時預報總覽</p>
+                        <a href="forecast.html" class="btn btn-outline-primary">前往極光預報</a>
+                    </div>
+                </div>
+            </article>
+            <article class="p-1 col">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2>旅人日記：一千種看見光的方式</h2>
+                        <p class="card-text">最新投稿</p>
+                        <a href="journal.html" class="btn btn-outline-primary">前往旅人日記</a>
+                    </div>
+                </div>
+            </article>
+            <article class="p-1 col">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2>系統管理</h2>
+                        <p class="card-text">非請勿入</p>
+                        <a href="login.html" class="btn btn-outline-danger">前往系統管理</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="text-center bg-secondary text-light p-3">
+        <p>第19屆全國身心障礙者技能競賽　設計者：Web67</p>
+    </footer>
+</body>
+
+</html>
+<script src="jqueryv4.0.0.js"></script>
+<script src="bootstrap.js"></script>
