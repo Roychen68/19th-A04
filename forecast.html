@@ -111,18 +111,18 @@
         let html = "";
         html += `<table class="table">`
         html += `<tr>${COLS.map(([key, lable, suffix]) => {
-                return `<th>${lable}</th>`
-            }).join("")}
-            </tr>`
+            return `<th>${lable}</th>`
+        }).join("")}
+                </tr>`
         response.forEach((row, i) => {
             html += `<tr>${COLS.map(([key, lable, suffix]) => {
                 const val = row[key]
-                if (val == null) return `<td>${lable+exist(val)}</td>`;
-                if (key == "recommendation") return `<td>${lable+level(val)}</td>`;
-                if (key == "note") return `<td>${lable+cut(val)}</td>`;
-                else return `<td>${lable+val+suffix}</td>`
+                if (val == null) return `<td>${lable + exist(val)}</td>`;
+                if (key == "recommendation") return `<td>${lable + level(val)}</td>`;
+                if (key == "note") return `<td>${lable + cut(val)}</td>`;
+                else return `<td>${lable + val + suffix}</td>`
             }).join("")}
-            </tr>`
+                </tr>`
         });
         html += `</table>`
         console.log(html);
@@ -138,9 +138,9 @@
                 if (val == null) return `<p>${lable}: ${exist(val)}</p>`;
                 if (key == "recommendation") return `<p>${lable}: ${level(val)}</p>`;
                 if (key == "note") return `<p>${lable}: ${cut(val)}</p>`;
-                else return `<p>${lable}: ${val+suffix}</p>`
+                else return `<p>${lable}: ${val + suffix}</p>`
             }).join("")}
-            </div></div>`
+                </div></div>`
         });
         html += `</div>`
         console.log(html);
@@ -149,12 +149,14 @@
     $("#form").on("submit", function (e) {
         e.preventDefault()
         render()
+        let LocationVal = $("#location").val()
+        let month = $("#month").val()
+        if (LocationVal != "all") response = response.filter((location) => { return location['name_en'] == LocationVal.trim() })
+        if (month != "") response = response.filter((location) => { return location['updated_at'].split("-")[1] == month.split("-")[1]})
         const sorting = $("#sort").val()
         if (sorting % 10 == 1) response = response.sort((a, b) => a[sorting[0]] - b[sorting[0]])
         if (sorting % 10 == 2) response = response.sort((a, b) => a[sorting[0]] - b[sorting[0]])
         if ($("#mode").val() == "card") $("#result").html(card())
         if ($("#mode").val() == "table") $("#result").html(table())
-        if ($("#location").val() != "all") response = response.filter((location) => location['name_en'] == $("#location").val())
-        console.log($("#location").val());
     })
 </script>
